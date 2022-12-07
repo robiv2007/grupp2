@@ -1,4 +1,10 @@
+using grupp2.Models;
+using grupp2.Services;
+
 var builder = WebApplication.CreateBuilder(args);
+
+builder.Services.Configure<MongoDBSettings>(builder.Configuration.GetSection("TrainingDB"));
+builder.Services.AddSingleton<TrainingDBService>();
 
 // Add services to the container.
 
