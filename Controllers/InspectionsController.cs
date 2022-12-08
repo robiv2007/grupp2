@@ -9,10 +9,10 @@ namespace grupp2.Controllers;
 [Route("api/[controller]")]
 public class InspectionsController: Controller {
     
-    private readonly MongoDBService _mongoDBService;
+    private readonly InspectionsDBService _inspectionsDBService;
 
-    public InspectionsController(MongoDBService mongoDBService) {
-        _mongoDBService = mongoDBService;
+    public InspectionsController(InspectionsDBService inspectionsDBService) {
+        _inspectionsDBService = inspectionsDBService;
     }
 
     /// <summary>
@@ -20,7 +20,7 @@ public class InspectionsController: Controller {
     /// </summary>
     [HttpGet]
     public async Task<List<Inspections>> Get() {   
-        return await _mongoDBService.GetAsync();
+        return await _inspectionsDBService.GetAsync();
     }
 
     /// <summary>
@@ -51,7 +51,7 @@ public class InspectionsController: Controller {
     
     [HttpPost]
     public async Task<IActionResult> Post([FromBody] Inspections inspections) {
-        await _mongoDBService.CreateAsync(inspections);
+        await _inspectionsDBService.CreateAsync(inspections);
         return CreatedAtAction(nameof(Get), new { id = inspections._Id }, inspections);
     }
 
@@ -60,7 +60,7 @@ public class InspectionsController: Controller {
     /// </summary>
     [HttpPut("{id}")]
     public async Task<IActionResult> AddToInspections(string id, [FromBody] string inspectionsId) {
-        await _mongoDBService.AddToInspectionsAsync(id, inspectionsId);
+        await _inspectionsDBService.AddToInspectionsAsync(id, inspectionsId);
         return NoContent();
 }
 
@@ -69,7 +69,7 @@ public class InspectionsController: Controller {
     /// </summary>
     [HttpDelete("{id}")]
         public async Task<IActionResult> Delete(string id) {
-        await _mongoDBService.DeleteAsync(id);
+        await _inspectionsDBService.DeleteAsync(id);
         return NoContent();
 
     }

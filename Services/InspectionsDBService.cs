@@ -5,11 +5,11 @@ using MongoDB.Bson;
 
 namespace grupp2.Services;
 
-public class MongoDBService {
+public class InspectionsDBService {
 
     private readonly IMongoCollection<Inspections> _inspectionsCollection;
 
-    public MongoDBService(IOptions<MongoDBSettings> mongoDBSettings) {
+    public InspectionsDBService(IOptions<MongoDBSettings> mongoDBSettings) {
         MongoClient client = new MongoClient(mongoDBSettings.Value.ConnectionURI);
         IMongoDatabase database = client.GetDatabase(mongoDBSettings.Value.DatabaseName);
         _inspectionsCollection = database.GetCollection<Inspections>(mongoDBSettings.Value.CollectionName);
@@ -29,7 +29,7 @@ public class MongoDBService {
     return;
     }
     public async Task DeleteAsync(string id) { 
-        FilterDefinition<Inspections> filter = Builders<Inspections>.Filter.Eq("Id", id);
+        FilterDefinition<Inspections> filter = Builders<Inspections>.Filter.Eq("_Id", id);
         await _inspectionsCollection.DeleteOneAsync(filter);
         return;
 

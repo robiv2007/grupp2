@@ -5,7 +5,7 @@ using System.Reflection;
 var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.Configure<MongoDBSettings>(builder.Configuration.GetSection("TrainingDB"));
-builder.Services.AddSingleton<MongoDBService>();
+builder.Services.AddSingleton<InspectionsDBService>();
 
 // Add services to the container.
 
