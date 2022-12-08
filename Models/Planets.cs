@@ -10,12 +10,6 @@ public class Planets {
      [BsonId]
     public ObjectId _id { get; set; }
 
-    public string MongoId{
-        get {return _id.ToString();}
-        set { _id = ObjectId.Parse(value);}
-    }
-
-
     public string name { get; set; } = null!;
 
     public int orderFromSun {get; set;}
