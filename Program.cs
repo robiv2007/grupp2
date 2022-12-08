@@ -1,5 +1,5 @@
 using Grupp2.Models;
-using Grupp2.Services; 
+using Grupp2.Services;
 
 
 var builder = WebApplication.CreateBuilder(args);
@@ -23,7 +23,6 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI();
 }
 
-// test
 
 
 app.UseHttpsRedirection();
