@@ -6,13 +6,13 @@ public class SurfaceTemperatureC {
 
 
     [BsonElement("min")]
-    public int Min {get; set;}
+    public double? Min {get; set;}
 
     [BsonElement("max")]
-    public int Max {get; set;}
+    public double? Max {get; set;}
 
     [BsonElement("mean")]
-    public int Mean {get; set;}
+    public double? Mean {get; set;}
 
 
 

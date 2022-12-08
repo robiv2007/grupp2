@@ -4,11 +4,16 @@ using System.Text.Json.Serialization;
 
 namespace GRUPP2.Models;
 
-
 public class Planets {
 
      [BsonRepresentation(BsonType.ObjectId)]
-    public string? _id { get; set; }
+     [BsonId]
+    public ObjectId _id { get; set; }
+
+    public string MongoId{
+        get {return _id.ToString();}
+        set { _id = ObjectId.Parse(value);}
+    }
 
 
     public string name { get; set; } = null!;
