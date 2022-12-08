@@ -18,4 +18,9 @@ public class Planets {
     public bool hasRings {get; set;}
 
      public List<string> mainAtmosphere {get; set;} = null!;
+
+      [BsonElement("surfaceTemperatureC")]
+    [JsonPropertyName("surfaceTemperatureC")]
+    public SurfaceTemperatureC SurfaceTemperatureC {get; set;} = null!;
+
 }

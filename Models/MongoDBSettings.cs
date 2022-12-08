@@ -1,4 +1,4 @@
-namespace MongoPlanets.Models;
+namespace GRUPP2.Models;
 
 public class MongoDBSettings {
 
