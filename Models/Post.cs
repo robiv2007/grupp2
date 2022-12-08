@@ -4,7 +4,7 @@ using System.Text.Json.Serialization;
 
 namespace Grupp2.Models;
 
-public class Post {
+public class Posts {
     [BsonId]
     [BsonRepresentation(BsonType.ObjectId)]
     public string? Id { get; set; }
@@ -21,6 +21,6 @@ public class Post {
 
     public List<Comment> comments { get; set; } = null!;
 
-    public DateTime date { get; set; } ;
+    public DateTime? date { get; set; } 
 
 }
