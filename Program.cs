@@ -1,17 +1,21 @@
 using grupp2.Models;
 using grupp2.Services;
+using System.Reflection;
 
 var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.Configure<MongoDBSettings>(builder.Configuration.GetSection("TrainingDB"));
-builder.Services.AddSingleton<TrainingDBService>();
+builder.Services.AddSingleton<MongoDBService>();
 
 // Add services to the container.
 
 builder.Services.AddControllers();
-// Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
-builder.Services.AddSwaggerGen();
+builder.Services.AddSwaggerGen( options => {
+      var xmlFilename = $"{Assembly.GetExecutingAssembly().GetName().Name}.xml";
+    options.IncludeXmlComments(Path.Combine(AppContext.BaseDirectory, xmlFilename));
+    }
+);
 
 var app = builder.Build();
 

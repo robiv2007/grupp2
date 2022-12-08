@@ -5,15 +5,11 @@ using System.Reflection;
 
 namespace grupp2.Models;
 
-public class Training {
+public class Inspections {
 
     [BsonId]
     [BsonRepresentation(BsonType.ObjectId)]
     public string? _Id { get; set; }
-
-   [BsonElement("id")]
-   [JsonPropertyName("id")] 
-    public string? Id { get; set; } = null!;
 
     [BsonElement("certificate_number")]
    [JsonPropertyName("certificate_number")] 

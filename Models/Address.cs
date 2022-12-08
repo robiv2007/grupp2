@@ -11,7 +11,7 @@ public class Address {
 
     [BsonElement("zip")]
     [JsonPropertyName("zip")]
-    public int? Zip { get; set; }
+    public int Zip { get; set; }
 
      [BsonElement("street")]
     [JsonPropertyName("street")]
@@ -19,6 +19,6 @@ public class Address {
 
      [BsonElement("number")]
     [JsonPropertyName("number")]
-    public int? Number { get; set; }
+    public int Number { get; set; }
 
 }
