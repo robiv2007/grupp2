@@ -10,7 +10,7 @@ public class Sales {
    
     [BsonId]
     [BsonRepresentation(BsonType.ObjectId)]
-    public string? Id { get; set; }
+    public ObjectId? _id { get; set; }
  
     [BsonElement("saleDate")]
     [JsonPropertyName("saleDate")]

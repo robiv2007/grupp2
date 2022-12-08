@@ -23,7 +23,7 @@ public class SalesController: Controller {
     [HttpPost]
     public async Task<IActionResult> Post([FromBody] Sales sales) {
         await _mongoDBService.CreateAsync(sales);
-        return CreatedAtAction(nameof(Get), new { id = sales.Id }, sales);
+        return CreatedAtAction(nameof(Get), new { id = sales._id }, sales);
     }
 
     // [HttpPut("{id}")]
