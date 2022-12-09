@@ -3,6 +3,7 @@ using System.Text.Json.Serialization;
 
 namespace grupp2.Models;
 
+    //Creates a customized class with different properties that can be used in the head model
 public class Address {
 
     [BsonElement("city")]
