@@ -1,4 +1,6 @@
+
 namespace Grupp2.Models;
+
 
 public class MongoDBSettings {
 
