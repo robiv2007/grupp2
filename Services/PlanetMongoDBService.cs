@@ -5,11 +5,11 @@ using MongoDB.Bson;
 
 namespace GRUPP2.Services;
 
-public class MongoDBService {
+public class PlanetMongoDBService {
 
     private readonly IMongoCollection<Planets> _planetsCollection;
 
-    public MongoDBService(IOptions<MongoDBSettings> mongoDBSettings) {
+    public PlanetMongoDBService(IOptions<MongoDBSettings> mongoDBSettings) {
         MongoClient client = new MongoClient(mongoDBSettings.Value.ConnectionURI);
         IMongoDatabase database = client.GetDatabase(mongoDBSettings.Value.DatabaseName);
         _planetsCollection = database.GetCollection<Planets>(mongoDBSettings.Value.CollectionName);

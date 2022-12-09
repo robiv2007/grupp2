@@ -9,9 +9,9 @@ namespace GRUPP2.Controllers;
 [Route("api/[controller]")]
 public class PlanetsController: Controller {
     
-    private readonly MongoDBService _mongoDBService;
+    private readonly PlanetMongoDBService _mongoDBService;
 
-    public PlanetsController(MongoDBService mongoDBService) {
+    public PlanetsController(PlanetMongoDBService mongoDBService) {
         _mongoDBService = mongoDBService;
     }
 
