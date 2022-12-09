@@ -8,11 +8,11 @@ namespace Grupp2.Controllers;
 
 [Controller]
 [Route("api/[controller]")]
-public class PlaylistController: Controller {
+public class PostController: Controller {
     
     private readonly MongoDBService _mongoDBService;
 
-    public PlaylistController(MongoDBService mongoDBService) {
+    public PostController(MongoDBService mongoDBService) {
         _mongoDBService = mongoDBService;
     }
 
