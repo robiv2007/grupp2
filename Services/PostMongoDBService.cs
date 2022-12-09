@@ -36,4 +36,9 @@ public class PostMongoDBService {
         return;
     }
 
+    // public async Task EditAsync(string id, string newBody) {
+    //     FilterDefinition<Posts> filter = Builders<Posts>.Filter.Eq("Id", id);
+    //     UpdateDefinition<Posts> update = Builders<Posts>.Update.Set<string>("body");
+    // }
+
 }
