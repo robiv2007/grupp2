@@ -23,7 +23,13 @@ public class PostMongoDBService {
         await _postsCollection.InsertOneAsync(posts);
         return;
      }
-    // public async Task AddToPlaylistAsync(string id, string salesId) {}
+    public async Task AddToPlaylistAsync(string id, Comment comment) {
+        FilterDefinition<Posts> filter = Builders<Posts>.Filter.Eq("Id", id);
+        UpdateDefinition<Posts> update = Builders<Posts>.Update.AddToSet<Comment>("comments", comment);
+        await _postsCollection.UpdateOneAsync(filter, update);
+        return;
+
+    }
     public async Task DeleteAsync(string id) { 
         FilterDefinition<Posts> filter = Builders<Posts>.Filter.Eq("Id", id);
         await _postsCollection.DeleteOneAsync(filter);

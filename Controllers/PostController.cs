@@ -27,8 +27,11 @@ public class PostController: Controller {
         return CreatedAtAction(nameof(Get), new { id = posts.Id }, posts);
     }
 
-    // [HttpPut("{id}")]
-    // public async Task<IActionResult> AddToPlaylist(string id, [FromBody] string movieId) {}
+    [HttpPut("{id}")]
+    public async Task<IActionResult> AddToPlaylist(string id, [FromBody] Comment comment) {
+        await _mongoDBService.AddToPlaylistAsync(id, comment);
+        return NoContent();
+    }
 
     [HttpDelete("{id}")]
     public async Task<IActionResult> Delete(string id) {
