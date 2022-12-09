@@ -10,9 +10,9 @@ namespace Grupp2.Controllers;
 [Route("api/[controller]")]
 public class PostController: Controller {
     
-    private readonly MongoDBService _mongoDBService;
+    private readonly PostMongoDBService _mongoDBService;
 
-    public PostController(MongoDBService mongoDBService) {
+    public PostController(PostMongoDBService mongoDBService) {
         _mongoDBService = mongoDBService;
     }
 
@@ -30,7 +30,10 @@ public class PostController: Controller {
     // [HttpPut("{id}")]
     // public async Task<IActionResult> AddToPlaylist(string id, [FromBody] string movieId) {}
 
-    // [HttpDelete("{id}")]
-    // public async Task<IActionResult> Delete(string id) {}
+    [HttpDelete("{id}")]
+    public async Task<IActionResult> Delete(string id) {
+        await _mongoDBService.DeleteAsync(id);
+        return NoContent();
+    }
 
 }

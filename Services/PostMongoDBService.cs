@@ -5,11 +5,11 @@ using MongoDB.Bson;
 
 namespace Grupp2.Services;
 
-public class MongoDBService {
+public class PostMongoDBService {
 
     private readonly IMongoCollection<Posts> _postsCollection;
 
-    public MongoDBService(IOptions<MongoDBSettings> mongoDBSettings) {
+    public PostMongoDBService(IOptions<MongoDBSettings> mongoDBSettings) {
         MongoClient client = new MongoClient(mongoDBSettings.Value.ConnectionURI);
         IMongoDatabase database = client.GetDatabase(mongoDBSettings.Value.DatabaseName);
         _postsCollection = database.GetCollection<Posts>(mongoDBSettings.Value.CollectionName);
@@ -24,6 +24,10 @@ public class MongoDBService {
         return;
      }
     // public async Task AddToPlaylistAsync(string id, string salesId) {}
-    // public async Task DeleteAsync(string id) { }
+    public async Task DeleteAsync(string id) { 
+        FilterDefinition<Posts> filter = Builders<Posts>.Filter.Eq("Id", id);
+        await _postsCollection.DeleteOneAsync(filter);
+        return;
+    }
 
 }
