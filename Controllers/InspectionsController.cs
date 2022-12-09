@@ -7,6 +7,7 @@ namespace grupp2.Controllers;
 
 [Controller]
 [Route("api/[controller]")]
+[Produces("application/json")]
 public class InspectionsController: Controller {
     
     private readonly InspectionsDBService _inspectionsDBService;
@@ -29,36 +30,45 @@ public class InspectionsController: Controller {
     /// <remarks>
     /// Sample request:
     ///
-    ///     POST /Inspection
-    ///     {
-    ///        {
-    /// "id": "string",
-    ///"certificate_number": 39,
+    ///     Create /Inspection
+    /// {
+    ///"_Id": "string",
+    ///"certificate_number": 0,
+    ///"business_name": "string",
     ///"date": "string",
-    ///"business_name": "sanna",
     ///"result": "string",
     ///"sector": "string",
     ///"address": {
-    /// "city": "string",
+    ///"city": "string",
     ///"zip": 0,
     ///"street": "string",
     ///"number": 0
+    ///},
+    ///"string": [
+    ///"string"
+    ///]
     ///}
-    ///}
-    ///     }
-    ///
     /// </remarks>  
-    
+
+    /// <response code="201">Returns the newly created item</response>
+    /// <response code="404">Item not found</response>
     [HttpPost]
+    [ProducesResponseType(StatusCodes.Status201Created)]
+    [ProducesResponseType(StatusCodes.Status404NotFound)] 
     public async Task<IActionResult> Post([FromBody] Inspections inspections) {
         await _inspectionsDBService.CreateAsync(inspections);
         return CreatedAtAction(nameof(Get), new { id = inspections._Id }, inspections);
     }
 
     /// <summary>
-    /// Add changes to a specific inpsections item.
+    /// Adds new item to list.
     /// </summary>
+    /// <response code="404">Item not found</response>
+    /// <response code="102">Processing request</response>
+    
     [HttpPut("{id}")]
+    [ProducesResponseType(StatusCodes.Status404NotFound)] 
+    [ProducesResponseType(StatusCodes.Status102Processing)] 
     public async Task<IActionResult> AddToInspections(string id, [FromBody] string trainingId) {
         await _inspectionsDBService.AddToInspectionsAsync(id, trainingId);
         return NoContent();
@@ -67,7 +77,13 @@ public class InspectionsController: Controller {
     /// <summary>
     /// Deletes a specific inspections item.
     /// </summary>
+     /// <response code="404">Item not found</response>
+    /// <response code="102">Processing request</response>
+    /// <response code="204">No item of such content exists</response>
     [HttpDelete("{id}")]
+    [ProducesResponseType(StatusCodes.Status404NotFound)] 
+    [ProducesResponseType(StatusCodes.Status102Processing)]
+    [ProducesResponseType(StatusCodes.Status204NoContent)] 
         public async Task<IActionResult> Delete(string id) {
         await _inspectionsDBService.DeleteAsync(id);
         return NoContent();

@@ -35,8 +35,8 @@ public class Inspections {
     [JsonPropertyName("address")]
     public Address? Address { get; set; } = null!;
 
-      [BsonElement("trainingthings")]
-    [JsonPropertyName("trainingthings")]
+      [BsonElement("training")]
+    [JsonPropertyName("training")]
     public List<string> TrainingIds { get; set; } = null!;
 
 }
