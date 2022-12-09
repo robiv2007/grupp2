@@ -1,14 +1,10 @@
-
-using Grupp2.Models;
-using Grupp2.Services;
+using GRUPP2.Services;
+using GRUPP2.Models;
 using Microsoft.OpenApi.Models;
 
 var builder = WebApplication.CreateBuilder(args);
 builder.Services.Configure<MongoDBSettings>(builder.Configuration.GetSection("MongoDB"));
 builder.Services.AddSingleton<PlanetMongoDBService>();
-
-builder.Services.Configure<MongoDBSettings>(builder.Configuration.GetSection("MongoDB"));
-builder.Services.AddSingleton<PostMongoDBService>();
 
 // Add services to the container.
 
@@ -23,13 +19,10 @@ var app = builder.Build();
 if (app.Environment.IsDevelopment())
 {
     app.UseSwagger();
-    app.UseSwaggerUI(options =>
-{
-    options.SwaggerEndpoint("/swagger/v1/swagger.json", "v1");
-    options.RoutePrefix = string.Empty;
-});
+    app.UseSwaggerUI();
 }
 
+// test
 
 
 app.UseHttpsRedirection();
