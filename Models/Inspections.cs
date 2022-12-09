@@ -5,18 +5,28 @@ using System.Reflection;
 
 namespace grupp2.Models;
 
+    /// <summary>
+    /// Model for an Inspections document in collection
+    /// </summary>
 public class Inspections {
 
-    //Creates a unique id for each object
+     /// <summary>
+    /// Creates a unique id for each object
+    /// </summary>
     [BsonId]
     [BsonRepresentation(BsonType.ObjectId)]
     public string? _Id { get; set; }
 
+    /// <summary>
+    /// BsonElement and JsonPropertyName is for the connection between database and model.
+    /// saying that a document here called CertificateNumber will in the database be called certificate_number
+    /// </summary>
     //Use these attributes and serialization to bind data from model to database and vice versa
     [BsonElement("certificate_number")]
     [JsonPropertyName("certificate_number")] 
     public int? CertificateNumber { get; set; } = null!;
 
+     #pragma warning disable CS1591
     [BsonElement("business_name")]
     [JsonPropertyName("business_name")] 
     public string? BusinessName { get; set; } = null!;
@@ -42,4 +52,5 @@ public class Inspections {
     public List<string> TrainingIds { get; set; } = null!;
 
 }
+#pragma warning restore CS1591
 

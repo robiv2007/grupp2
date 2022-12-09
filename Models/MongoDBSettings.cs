@@ -1,5 +1,6 @@
 namespace grupp2.Models;
 
+#pragma warning disable CS1591
 public class MongoDBSettings {
 
     //Use this model to connect to database
@@ -8,3 +9,4 @@ public class MongoDBSettings {
     public string CollectionName { get; set; } = null!;
 
 }
+#pragma warning restore CS1591

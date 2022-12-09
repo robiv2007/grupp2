@@ -8,6 +8,8 @@ namespace grupp2.Controllers;
 [Controller]
 [Route("api/[controller]")]
 [Produces("application/json")]
+
+#pragma warning disable CS1591
 public class InspectionsController: Controller {
     
     private readonly InspectionsDBService _inspectionsDBService;
@@ -91,3 +93,4 @@ public class InspectionsController: Controller {
     }
 
 }
+#pragma warning restore CS159

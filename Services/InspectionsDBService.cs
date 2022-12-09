@@ -5,6 +5,7 @@ using MongoDB.Bson;
 
 namespace grupp2.Services;
 
+#pragma warning disable CS1591
 public class InspectionsDBService {
 
     private readonly IMongoCollection<Inspections> _inspectionsCollection;
@@ -42,7 +43,7 @@ public class InspectionsDBService {
         return;
 
     }
-
 }
+#pragma warning restore CS159
 
 

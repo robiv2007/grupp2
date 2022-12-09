@@ -4,10 +4,16 @@ using System.Text.Json.Serialization;
 namespace grupp2.Models;
 
     //Creates a customized class with different properties that can be used in the head model
+
+    /// <summary>
+    /// Address model containing properties of city, zip, street and number
+    /// </summary>
 public class Address {
 
     [BsonElement("city")]
     [JsonPropertyName("city")]
+
+    #pragma warning disable CS1591
     public string? City { get; set; }
 
     [BsonElement("zip")]
@@ -23,3 +29,4 @@ public class Address {
     public int Number { get; set; }
 
 }
+    #pragma warning restore CS1591
