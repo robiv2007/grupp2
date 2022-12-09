@@ -16,7 +16,7 @@ public class InspectionsController: Controller {
     }
 
     /// <summary>
-    /// Gets all training item from list.
+    /// Gets all inspections items from list.
     /// </summary>
     [HttpGet]
     public async Task<List<Inspections>> Get() {   
@@ -24,7 +24,7 @@ public class InspectionsController: Controller {
     }
 
     /// <summary>
-    /// Creates a specific training item.
+    /// Creates a new inspection item.
     /// </summary>
     /// <remarks>
     /// Sample request:
@@ -32,19 +32,19 @@ public class InspectionsController: Controller {
     ///     POST /Inspection
     ///     {
     ///        {
- /// "id": "string",
-  ///"certificate_number": 39,
-  ///"date": "string",
-  ///"business_name": "sanna",
-  ///"result": "string",
-  ///"sector": "string",
-  ///"address": {
+    /// "id": "string",
+    ///"certificate_number": 39,
+    ///"date": "string",
+    ///"business_name": "sanna",
+    ///"result": "string",
+    ///"sector": "string",
+    ///"address": {
     /// "city": "string",
     ///"zip": 0,
     ///"street": "string",
     ///"number": 0
-  ///}
-///}
+    ///}
+    ///}
     ///     }
     ///
     /// </remarks>  
@@ -56,16 +56,16 @@ public class InspectionsController: Controller {
     }
 
     /// <summary>
-    /// Add changes to a specific training item.
+    /// Add changes to a specific inpsections item.
     /// </summary>
     [HttpPut("{id}")]
-    public async Task<IActionResult> AddToInspections(string id, [FromBody] string inspectionsId) {
-        await _inspectionsDBService.AddToInspectionsAsync(id, inspectionsId);
+    public async Task<IActionResult> AddToInspections(string id, [FromBody] string trainingId) {
+        await _inspectionsDBService.AddToInspectionsAsync(id, trainingId);
         return NoContent();
 }
 
     /// <summary>
-    /// Deletes a specific training item.
+    /// Deletes a specific inspections item.
     /// </summary>
     [HttpDelete("{id}")]
         public async Task<IActionResult> Delete(string id) {

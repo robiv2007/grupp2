@@ -22,9 +22,9 @@ public class InspectionsDBService {
         await _inspectionsCollection.InsertOneAsync(inspections);
             return;
     }
-    public async Task AddToInspectionsAsync(string id, string inspectionsId) {
-    FilterDefinition<Inspections> filter = Builders<Inspections>.Filter.Eq("Id", id);
-    UpdateDefinition<Inspections> update = Builders<Inspections>.Update.AddToSet<string>("inspectionsId", inspectionsId);
+    public async Task AddToInspectionsAsync(string id, string trainingId) {
+    FilterDefinition<Inspections> filter = Builders<Inspections>.Filter.Eq("_Id", id);
+    UpdateDefinition<Inspections> update = Builders<Inspections>.Update.AddToSet<string>("TrainingIds", trainingId);
     await _inspectionsCollection.UpdateOneAsync(filter, update);
     return;
     }
