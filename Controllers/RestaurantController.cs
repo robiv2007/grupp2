@@ -9,10 +9,10 @@ namespace GRUPP2.Controllers;
 [Route("api/[controller]")]
 public class RestaurantController: Controller {
 
-    private readonly MongoDBService _mongoDBService;
+    private readonly RestaurantMongoDBService _restaurantMongoDBService;
 
-    public RestaurantController(MongoDBService mongoDBService) {
-        _mongoDBService = mongoDBService;
+    public RestaurantController(RestaurantMongoDBService restaurantMongoDBService) {
+        _restaurantMongoDBService = restaurantMongoDBService;
     }
 
     [HttpGet]
@@ -22,19 +22,19 @@ public class RestaurantController: Controller {
 
     [HttpPost]
     public async Task<IActionResult> Post([FromBody] Restaurant restaurant) {
-        await _mongoDBService.CreateAsync(restaurant);
-        return CreatedAtAction(nameof(Get), new {id = restaurant.Id}, restaurant);
+        await _restaurantMongoDBService.CreateAsync(restaurant);
+        return CreatedAtAction(nameof(Get), new {id = restaurant._id}, restaurant);
     }
 
     [HttpPut("{id}")]
     public async Task<IActionResult> AddToRestaurant (string id, [FromBody] string restaurantId) {
-        await _mongoDBService.AddToRestaurantAsync(id, restaurantId);
+        await _restaurantMongoDBService.AddToRestaurantAsync(id, restaurantId);
         return NoContent();
     }
 
     [HttpDelete("{id}")]
     public async Task<IActionResult> Delete(string id) {
-        await _mongoDBService.DeleteAsync(id);
+        await _restaurantMongoDBService.DeleteAsync(id);
         return NoContent();
     }
 

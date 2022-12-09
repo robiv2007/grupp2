@@ -8,12 +8,16 @@ public class Restaurant {
 
     [BsonId]
     [BsonRepresentation(BsonType.ObjectId)]
-    public string? Id { get; set; }
+    public ObjectId _id { get; set; }
 
-    public string username { get; set; } = null!;
+    public string borough { get; set;} = null!;
 
-    [BsonElement("")]
-    [JsonPropertyName("")]
-    public List<string> restaurantIds { get; set; } = null!;
+    public string cuisine { get; set; } = null!;
+
+    public List<string> menuItems { get; set; } = null!;
+
+    [BsonElement("coordinates")]
+    [JsonPropertyName("coordinates")]
+    public Coordinates Coordinates {get; set;} = null!;
 
 }

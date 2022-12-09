@@ -1,6 +1,6 @@
 namespace GRUPP2.Models;
 
-public class MongoDBSettings {
+public class RestaurantMongoDBSettings {
 
     public string ConnectionURI { get; set; } = null!;
     public string DatabaseName { get; set; } = null!;

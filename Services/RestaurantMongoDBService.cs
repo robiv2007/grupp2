@@ -5,14 +5,14 @@ using MongoDB.Bson;
 
 namespace GRUPP2.Services;
 
-public class MongoDBService {
+public class RestaurantMongoDBService {
 
     private readonly IMongoCollection<Restaurant> _restaurantCollection;
 
-    public MongoDBService(IOptions<MongoDBSettings> mongoDBSettings) {
-        MongoClient client = new MongoClient(mongoDBSettings.Value.ConnectionURI);
-        IMongoDatabase database = client.GetDatabase(mongoDBSettings.Value.DatabaseName);
-        _restaurantCollection = database.GetCollection<Restaurant>(mongoDBSettings.Value.CollectionName);
+    public RestaurantMongoDBService(IOptions<MongoDBSettings> restaurantMongoDBSettings) {
+        MongoClient client = new MongoClient(restaurantMongoDBSettings.Value.ConnectionURI);
+        IMongoDatabase database = client.GetDatabase(restaurantMongoDBSettings.Value.DatabaseName);
+        _restaurantCollection = database.GetCollection<Restaurant>(restaurantMongoDBSettings.Value.CollectionName);
     }
 
     public async Task CreateAsync(Restaurant restaurant) {
