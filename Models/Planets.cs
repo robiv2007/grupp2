@@ -6,9 +6,9 @@ namespace Grupp2.Models;
 
 public class Planets {
 
-     [BsonRepresentation(BsonType.ObjectId)]
-     [BsonId]
-    public ObjectId _id { get; set; }
+    [BsonId]
+    [BsonRepresentation(BsonType.ObjectId)]
+    public string? _Id { get; set; }
 
     public string name { get; set; } = null!;
 
