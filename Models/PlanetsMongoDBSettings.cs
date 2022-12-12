@@ -1,6 +1,6 @@
 namespace Grupp2.Models;
 
-public class MongoDBSettings
+public class PlanetsMongoDBSettings
 {
 
     public string ConnectionURI { get; set; } = null!;

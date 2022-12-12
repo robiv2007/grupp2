@@ -3,7 +3,7 @@ using Microsoft.OpenApi.Models;
 using Grupp2.Models;
 
 var builder = WebApplication.CreateBuilder(args);
-builder.Services.Configure<MongoDBSettings>(builder.Configuration.GetSection("MongoDB"));
+builder.Services.Configure<PlanetsMongoDBSettings>(builder.Configuration.GetSection("MongoDBPlanets"));
 builder.Services.AddSingleton<PlanetMongoDBService>();
 
 // Add services to the container.

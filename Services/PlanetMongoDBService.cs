@@ -10,7 +10,7 @@ public class PlanetMongoDBService {
 
     private readonly IMongoCollection<Planets> _planetsCollection;
 
-    public PlanetMongoDBService(IOptions<MongoDBSettings> mongoDBSettings) {
+    public PlanetMongoDBService(IOptions<PlanetsMongoDBSettings> mongoDBSettings) {
         MongoClient client = new MongoClient(mongoDBSettings.Value.ConnectionURI);
         IMongoDatabase database = client.GetDatabase(mongoDBSettings.Value.DatabaseName);
         _planetsCollection = database.GetCollection<Planets>(mongoDBSettings.Value.CollectionName);
@@ -39,6 +39,6 @@ public class PlanetMongoDBService {
         return;
     }
 
-    public async Task UpdateAsync(ObjectId id, Planets updatedPlanet) =>
-        await _planetsCollection.ReplaceOneAsync(x => x._id == id, updatedPlanet);
+    // public async Task UpdateAsync(ObjectId id, Planets updatedPlanet) =>
+    //     await _planetsCollection.ReplaceOneAsync(x => x._id == id, updatedPlanet);
 }
