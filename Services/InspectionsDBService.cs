@@ -17,22 +17,22 @@ public class InspectionsDBService {
         _inspectionsCollection = database.GetCollection<Inspections>(mongoDBSettings.Value.CollectionName);
     }
 
-    //Asyncronically gets all documents from a collection stored in database
+    //Get all documents from a collection stored in database
     public async Task<List<Inspections>> GetAsync() {     
         return await _inspectionsCollection.Find(new BsonDocument()).ToListAsync();
     }
 
-    //Asyncronically gets a certain item, based on id, from list of inspection items 
+    //Get a certain item, based on id, from list of inspection items 
      public async Task<Inspections?> GetOneAsync(string id) =>
         await _inspectionsCollection.Find(x => x._Id == id).FirstOrDefaultAsync();
 
-    //Asyncronically creates a new document to collection
+    //Create a new document to collection
     public async Task CreateAsync(Inspections inspections) { 
         await _inspectionsCollection.InsertOneAsync(inspections);
             return;
     }
 
-    //Asyncronically finds document by id and then adds new training item to list
+    //Find document by id and add new training item to list
     public async Task AddToInspectionsAsync(string id, string trainingId) {
     FilterDefinition<Inspections> filter = Builders<Inspections>.Filter.Eq("_Id", id);
     UpdateDefinition<Inspections> update = Builders<Inspections>.Update.AddToSet<string>("TrainingIds", trainingId);
@@ -40,7 +40,7 @@ public class InspectionsDBService {
     return;
     }
 
-    //Asyncronically finds document by id and deletes it
+    //Find and delete document by id 
     public async Task DeleteAsync(string id) { 
         FilterDefinition<Inspections> filter = Builders<Inspections>.Filter.Eq("_Id", id);
         await _inspectionsCollection.DeleteOneAsync(filter);
