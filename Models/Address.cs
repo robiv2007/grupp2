@@ -1,7 +1,7 @@
 using MongoDB.Bson.Serialization.Attributes;
 using System.Text.Json.Serialization;
 
-namespace grupp2.Models;
+namespace Grupp2.Models;
 
     //Creates a customized class with different properties that can be used in the head model
 

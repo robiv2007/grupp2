@@ -1,4 +1,4 @@
-namespace grupp2.Models;
+namespace Grupp2.Models;
 
 #pragma warning disable CS1591
 public class MongoDBSettings {

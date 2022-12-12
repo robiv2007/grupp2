@@ -1,5 +1,5 @@
-using grupp2.Models;
-using grupp2.Services;
+using Grupp2.Models;
+using Grupp2.Services;
 using System.Reflection;
 
 var builder = WebApplication.CreateBuilder(args);

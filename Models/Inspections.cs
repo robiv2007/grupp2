@@ -3,9 +3,9 @@ using MongoDB.Bson.Serialization.Attributes;
 using System.Text.Json.Serialization;
 using System.Reflection;
 
-namespace grupp2.Models;
+namespace Grupp2.Models;
 
-    /// <summary>
+   /// <summary>
     /// Model for an Inspections document in collection
     /// </summary>
 public class Inspections {
