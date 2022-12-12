@@ -8,20 +8,51 @@ namespace Grupp2.Controllers;
 [Route("api/[controller]")]
 public class THoughtController : ControllerBase{
 
-private readonly ThoughtService _thoughtService;
+    private readonly ThoughtService _thoughtService;
 
-public THoughtController(ThoughtService thoughtService) =>
-_thoughtService = thoughtService;
+    public THoughtController(ThoughtService thoughtService) =>
+    _thoughtService = thoughtService;
 
-[HttpGet]
-public async Task<List<Thought>> Get() =>
-await _thoughtService.GetAsync();
+    [HttpGet]
+    public async Task<List<Thought>> Get() =>
+    await _thoughtService.GetAsync();
 
-[HttpPost]
-public async Task<IActionResult> Post(Thought newThought)
-{
-    await _thoughtService.CreateAsync(newThought);
-    return CreatedAtAction(nameof(Get), new { id = newThought.Id }, newThought);
-}
+    [HttpPost]
+    public async Task<IActionResult> Post(Thought newThought)
+    {
+        await _thoughtService.CreateAsync(newThought);
+        return CreatedAtAction(nameof(Get), new { id = newThought.Id }, newThought);
+    }
+
+    [HttpPut("{id:length(24)}")]
+    public async Task<IActionResult> Update(string id, Thought updatedThought)
+    {
+        var thought = await _thoughtService.GetAsync(id);
+
+        if(thought is null)
+        {
+            return NotFound();
+        }
+
+        updatedThought.Id = thought.Id;
+
+        await _thoughtService.UpdateAsync(id, updatedThought);
+        return NoContent();
+    }
+
+    [HttpDelete("{id:length(24)}")]
+    public async Task<IActionResult> Delete(string id)
+    {
+        var thought = await _thoughtService.GetAsync(id);
+
+        if(thought is null)
+        {
+            return NotFound();
+        }
+
+        await _thoughtService.DeleteAsync(id);
+
+        return NoContent();         
+    }
 
 }

@@ -27,6 +27,15 @@ public class ThoughtService
         public async Task<List<Thought>> GetAsync() => 
         await _thoughtsCollection.Find(_ => true).ToListAsync();
 
+        public async Task<Thought?> GetAsync(string id) =>
+        await _thoughtsCollection.Find(x => x.Id == id).FirstOrDefaultAsync();
+
         public async Task CreateAsync(Thought newThought) =>
         await _thoughtsCollection.InsertOneAsync(newThought);
+
+        public async Task UpdateAsync(string id, Thought updatedThought) =>
+        await _thoughtsCollection.ReplaceOneAsync(thought => thought.Id == id, updatedThought);
+
+        public async Task DeleteAsync(string id) =>
+        await _thoughtsCollection.DeleteOneAsync(thought => thought.Id == id);
 }
