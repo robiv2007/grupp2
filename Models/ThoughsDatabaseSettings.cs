@@ -1,8 +1,8 @@
 namespace Grupp2.Models;
 
-public class PlanetsMongoDBSettings
-{
 
+public class ThoughtsDatabaseSettings
+{
     public string ConnectionURI { get; set; } = null!;
 
     public string DatabaseName { get; set; } = null!;

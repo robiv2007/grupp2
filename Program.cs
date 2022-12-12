@@ -1,3 +1,4 @@
+
 using Grupp2.Services;
 using Microsoft.OpenApi.Models;
 using Grupp2.Models;
@@ -7,6 +8,9 @@ builder.Services.Configure<PlanetsMongoDBSettings>(builder.Configuration.GetSect
 builder.Services.AddSingleton<PlanetMongoDBService>();
 
 // Add services to the container.
+builder.Services.Configure<ThoughtsDatabaseSettings>(
+builder.Configuration.GetSection("ThoughtsMongoDB")); 
+builder.Services.AddSingleton<ThoughtService>();
 
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
