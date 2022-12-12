@@ -2,13 +2,13 @@ using MongoDB.Bson;
 using MongoDB.Bson.Serialization.Attributes;
 using System.Text.Json.Serialization;
 
-namespace GRUPP2.Models;
+namespace Grupp2.Models;
 
 public class Restaurant {
 
     [BsonId]
     [BsonRepresentation(BsonType.ObjectId)]
-    public ObjectId _id { get; set; }
+    public string? _id { get; set; }
 
     public string borough { get; set;} = null!;
 

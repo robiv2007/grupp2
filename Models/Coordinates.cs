@@ -1,6 +1,6 @@
 using MongoDB.Bson.Serialization.Attributes;
 
-namespace GRUPP2.Models;
+namespace Grupp2.Models;
 
 public class Coordinates {
 

@@ -1,15 +1,15 @@
-using GRUPP2.Models;
+using Grupp2.Models;
 using Microsoft.Extensions.Options;
 using MongoDB.Driver;
 using MongoDB.Bson;
 
-namespace GRUPP2.Services;
+namespace Grupp2.Services;
 
 public class RestaurantMongoDBService {
 
     private readonly IMongoCollection<Restaurant> _restaurantCollection;
 
-    public RestaurantMongoDBService(IOptions<MongoDBSettings> restaurantMongoDBSettings) {
+    public RestaurantMongoDBService(IOptions<RestaurantMongoDBSettings> restaurantMongoDBSettings) {
         MongoClient client = new MongoClient(restaurantMongoDBSettings.Value.ConnectionURI);
         IMongoDatabase database = client.GetDatabase(restaurantMongoDBSettings.Value.DatabaseName);
         _restaurantCollection = database.GetCollection<Restaurant>(restaurantMongoDBSettings.Value.CollectionName);
@@ -36,5 +36,8 @@ public class RestaurantMongoDBService {
         await _restaurantCollection.DeleteOneAsync(filter);
         return;
     }
+
+    public async Task<Restaurant?> GetOneById(string id) =>
+    await _restaurantCollection.Find(x => x._id == id).FirstOrDefaultAsync();
 
 }

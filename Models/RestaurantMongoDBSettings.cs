@@ -1,4 +1,4 @@
-namespace GRUPP2.Models;
+namespace Grupp2.Models;
 
 public class RestaurantMongoDBSettings {
 

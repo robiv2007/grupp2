@@ -1,10 +1,10 @@
-using GRUPP2.Models;
-using GRUPP2.Services;
+using Grupp2.Models;
+using Grupp2.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 
-builder.Services.Configure<MongoDBSettings>(builder.Configuration.GetSection("MongoDB"));
-builder.Services.AddSingleton<MongoDBService>();
+builder.Services.Configure<RestaurantMongoDBSettings>(builder.Configuration.GetSection("MongoDB"));
+builder.Services.AddSingleton<RestaurantMongoDBService>();
 
 // Add services to the container.
 

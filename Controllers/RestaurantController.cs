@@ -1,9 +1,9 @@
 using System;
 using Microsoft.AspNetCore.Mvc;
-using GRUPP2.Services;
-using GRUPP2.Models;
+using Grupp2.Services;
+using Grupp2.Models;
 
-namespace GRUPP2.Controllers;
+namespace Grupp2.Controllers;
 
 [Controller]
 [Route("api/[controller]")]
@@ -17,7 +17,7 @@ public class RestaurantController: Controller {
 
     [HttpGet]
     public async Task<List<Restaurant>> Get() {
-        return await _mongoDBService.GetAsync();
+        return await _restaurantMongoDBService.GetAsync();
     }
 
     [HttpPost]
@@ -36,6 +36,16 @@ public class RestaurantController: Controller {
     public async Task<IActionResult> Delete(string id) {
         await _restaurantMongoDBService.DeleteAsync(id);
         return NoContent();
+    }
+
+    [HttpGet("{id}")]
+    public async Task<ActionResult<Restaurant>> Get(string id) {
+        var restaurants = await _restaurantMongoDBService.GetOneById(id);
+
+        if (restaurants is null) {
+            return NotFound();
+        }
+        return restaurants;
     }
 
 }
