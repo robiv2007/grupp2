@@ -21,7 +21,6 @@ public class Inspections {
     /// BsonElement and JsonPropertyName is for the connection between database and model.
     /// saying that a document here called CertificateNumber will in the database be called certificate_number
     /// </summary>
-    //Use these attributes and serialization to bind data from model to database and vice versa
     [BsonElement("certificate_number")]
     [JsonPropertyName("certificate_number")] 
     public int? CertificateNumber { get; set; } = null!;

@@ -4,10 +4,8 @@ using System.Reflection;
 
 var builder = WebApplication.CreateBuilder(args);
 
-builder.Services.Configure<MongoDBSettings>(builder.Configuration.GetSection("TrainingDB"));
+builder.Services.Configure<InspectionDBSettings>(builder.Configuration.GetSection("TrainingDB"));
 builder.Services.AddSingleton<InspectionsDBService>();
-
-// Add services to the container.
 
 builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
@@ -19,15 +17,11 @@ builder.Services.AddSwaggerGen( options => {
 
 var app = builder.Build();
 
-// Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
 {
     app.UseSwagger();
     app.UseSwaggerUI();
 }
-
-// test
-
 
 app.UseHttpsRedirection();
 

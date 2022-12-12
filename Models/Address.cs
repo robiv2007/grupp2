@@ -3,8 +3,6 @@ using System.Text.Json.Serialization;
 
 namespace Grupp2.Models;
 
-    //Creates a customized class with different properties that can be used in the head model
-
     /// <summary>
     /// Address model containing properties of city, zip, street and number
     /// </summary>
