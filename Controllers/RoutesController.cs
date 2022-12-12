@@ -57,15 +57,22 @@ public class RoutesController : Controller
         return CreatedAtAction(nameof(Get), new { id = routes.Id }, routes);
     }
 
+
+    /// <summary>
+    /// Change airplane name.
+    /// </summary>
     [HttpPut("{id}")]
     [ProducesResponseType(StatusCodes.Status404NotFound)]
     [ProducesResponseType(StatusCodes.Status102Processing)]
-    public async Task<IActionResult> AddToRoutes(string id, [FromBody] string routesId)
+    public async Task<IActionResult> ChangeAirplaneName(string id, string newairplanename)
     {
-        await _mongoDBService.AddToRoutesAsync(id, routesId);
+        await _mongoDBService.ChangeAirplaneNameAsync(id, newairplanename);
         return NoContent();
     }
 
+    /// <summary>
+    /// Delete a route.
+    /// </summary>
     [HttpDelete("{id}")]
     [ProducesResponseType(StatusCodes.Status404NotFound)]
     [ProducesResponseType(StatusCodes.Status102Processing)]

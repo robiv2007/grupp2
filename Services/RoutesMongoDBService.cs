@@ -33,13 +33,15 @@ public class RoutesMongoDBService
         return;
     }
 
-    public async Task AddToRoutesAsync(string id, string routesId)
+    public async Task ChangeAirplaneNameAsync(string id, string newairplanename)
     {
         FilterDefinition<Routes> filter = Builders<Routes>.Filter.Eq("Id", id);
-        UpdateDefinition<Routes> update = Builders<Routes>.Update.AddToSet<string>("routesId", routesId);
+        UpdateDefinition<Routes> update = Builders<Routes>.Update.Set<string>("airplane", newairplanename);
         await _routesCollection.UpdateOneAsync(filter, update);
         return;
     }
+
+
 
     public async Task DeleteAsync(string id)
     {
