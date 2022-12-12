@@ -24,21 +24,21 @@ public class ThoughtController : ControllerBase{
         return CreatedAtAction(nameof(Get), new { id = newThought.Id }, newThought);
     }
 
-    [HttpPut("{id:length(24)}")]
-    public async Task<IActionResult> Update(string id, Thought updatedThought)
-    {
-        var thought = await _thoughtService.GetAsync(id);
+    // [HttpPut("{id:length(24)}")]
+    // public async Task<IActionResult> Update(string id, Thought updatedThought)
+    // {
+    //     var thought = await _thoughtService.GetAsync(id);
 
-        if(thought is null)
-        {
-            return NotFound();
-        }
+    //     if(thought is null)
+    //     {
+    //         return NotFound();
+    //     }
 
-        updatedThought.Id = thought.Id;
+    //     updatedThought.Id = thought.Id;
 
-        await _thoughtService.UpdateAsync(id, updatedThought);
-        return NoContent();
-    }
+    //     await _thoughtService.UpdateAsync(id, updatedThought);
+    //     return NoContent();
+    // }
 
     [HttpDelete("{id:length(24)}")]
     public async Task<IActionResult> Delete(string id)
@@ -53,6 +53,12 @@ public class ThoughtController : ControllerBase{
         await _thoughtService.DeleteAsync(id);
 
         return NoContent();         
+    }
+
+    [HttpPut("{id:length(24)}")]
+    public async Task<IActionResult> AddCommentToThought(string id, [FromBody]Comment comment) {
+        await _thoughtService.AddCommentAsync(id, comment);
+        return NoContent();
     }
 
 }

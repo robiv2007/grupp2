@@ -18,7 +18,7 @@ public string Title { get; set; } = null!;
 
 public List<string> Tags  { get; set; } = null!;
 
-public List<Comment> comments { get; set; } = null!;
+public List<Comment> Comments { get; set; } = null!;
 
 public DateTime? Date { get; set; }
 }
