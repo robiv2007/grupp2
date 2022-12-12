@@ -12,7 +12,7 @@ public class ThoughtService
         IOptions<ThoughtsDatabaseSettings> thoughDatabaseSetting)
         {
             var mongoClient = new MongoClient(
-                thoughDatabaseSetting.Value.ConnectionString
+                thoughDatabaseSetting.Value.ConnectionURI
             );
 
             var mongoDatabase = mongoClient.GetDatabase(
