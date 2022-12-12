@@ -38,4 +38,7 @@ public class PlanetMongoDBService {
         await _planetsCollection.DeleteOneAsync(filter);
         return;
     }
+
+    public async Task UpdateAsync(ObjectId id, Planets updatedPlanet) =>
+        await _planetsCollection.ReplaceOneAsync(x => x._id == id, updatedPlanet);
 }
