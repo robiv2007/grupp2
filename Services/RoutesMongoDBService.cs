@@ -10,7 +10,7 @@ public class RoutesMongoDBService
 
     private readonly IMongoCollection<Routes> _routesCollection;
 
-    public RoutesMongoDBService(IOptions<MongoDBSettings> mongoDBSettings)
+    public RoutesMongoDBService(IOptions<RoutesMongoDBSettings> mongoDBSettings)
     {
         MongoClient client = new MongoClient(mongoDBSettings.Value.ConnectionURI);
         IMongoDatabase database = client.GetDatabase(mongoDBSettings.Value.DatabaseName);
