@@ -1,5 +1,11 @@
-var builder = WebApplication.CreateBuilder(args);
+using Grupp2.Services;
+using Grupp2.Models;
+using Microsoft.OpenApi.Models;
+using System.Reflection;
 
+var builder = WebApplication.CreateBuilder(args);
+builder.Services.Configure<MongoDBSettings>(builder.Configuration.GetSection("MongoDB"));
+builder.Services.AddSingleton<RoutesMongoDBService>();
 // Add services to the container.
 
 builder.Services.AddControllers();
@@ -15,6 +21,9 @@ if (app.Environment.IsDevelopment())
     app.UseSwagger();
     app.UseSwaggerUI();
 }
+
+// test
+
 
 app.UseHttpsRedirection();
 
