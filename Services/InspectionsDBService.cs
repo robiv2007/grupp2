@@ -22,6 +22,11 @@ public class InspectionsDBService {
         return await _inspectionsCollection.Find(new BsonDocument()).ToListAsync();
     }
 
+    //Asyncronically gets a certain item, based on id, from list of inspection items 
+        
+     public async Task<Inspections?> GetOneAsync(string id) =>
+        await _inspectionsCollection.Find(x => x._Id == id).FirstOrDefaultAsync();
+
     //Asyncronically creates a new document to collection
     public async Task CreateAsync(Inspections inspections) { 
         await _inspectionsCollection.InsertOneAsync(inspections);

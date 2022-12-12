@@ -27,6 +27,21 @@ public class InspectionsController: Controller {
     }
 
     /// <summary>
+    /// Gets an item by id.
+    /// </summary>
+         [HttpGet("{id:length(24)}")]
+    public async Task<ActionResult<Inspections>> Get(string id)
+    {
+        var inspection = await _inspectionsDBService.GetOneAsync(id);
+
+        if (inspection is null)
+        {
+            return NotFound();
+        }
+        return inspection;
+    }
+
+    /// <summary>
     /// Creates a new inspection item.
     /// </summary>
     /// <remarks>
@@ -93,4 +108,4 @@ public class InspectionsController: Controller {
     }
 
 }
-#pragma warning restore CS159
+
