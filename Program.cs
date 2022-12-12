@@ -5,7 +5,13 @@ using System.Reflection;
 using Microsoft.OpenApi.Models;
 
 
+
 var builder = WebApplication.CreateBuilder(args);
+
+builder.Services.Configure<RoutesMongoDBSettings>(builder.Configuration.GetSection("RoutesMongoDB"));
+builder.Services.AddSingleton<RoutesMongoDBService>();
+// Add services to the container.
+
 builder.Services.Configure<PlanetsMongoDBSettings>(builder.Configuration.GetSection("MongoDBPlanets"));
 builder.Services.AddSingleton<PlanetMongoDBService>();
 
@@ -13,16 +19,18 @@ builder.Services.AddSingleton<PlanetMongoDBService>();
 builder.Services.Configure<InspectionDBSettings>(builder.Configuration.GetSection("TrainingDB"));
 builder.Services.AddSingleton<InspectionsDBService>();
 builder.Services.Configure<ThoughtsDatabaseSettings>(
-builder.Configuration.GetSection("ThoughtsMongoDB")); 
+builder.Configuration.GetSection("ThoughtsMongoDB"));
 builder.Services.AddSingleton<ThoughtService>();
+
 
 
 builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
-builder.Services.AddSwaggerGen( options => {
-      var xmlFilename = $"{Assembly.GetExecutingAssembly().GetName().Name}.xml";
+builder.Services.AddSwaggerGen(options =>
+{
+    var xmlFilename = $"{Assembly.GetExecutingAssembly().GetName().Name}.xml";
     options.IncludeXmlComments(Path.Combine(AppContext.BaseDirectory, xmlFilename));
-    }
+}
 );
 
 var app = builder.Build();
