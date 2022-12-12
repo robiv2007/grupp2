@@ -1,6 +1,6 @@
 using MongoDB.Bson.Serialization.Attributes;
 
-namespace grupp2.Models;
+namespace Grupp2.Models;
 
 public class SurfaceTemperatureC {
 

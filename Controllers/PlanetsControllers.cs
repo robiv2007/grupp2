@@ -1,9 +1,9 @@
 using System;
 using Microsoft.AspNetCore.Mvc;
-using grupp2.Services;
-using grupp2.Models;
+using Grupp2.Services;
+using Grupp2.Models;
 
-namespace grupp2.Controllers; 
+namespace Grupp2.Controllers; 
 
 [Controller]
 [Route("api/[controller]")]

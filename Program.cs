@@ -1,6 +1,6 @@
-using grupp2.Services;
-using grupp2.Models;
+using Grupp2.Services;
 using Microsoft.OpenApi.Models;
+using Grupp2.Models;
 
 var builder = WebApplication.CreateBuilder(args);
 builder.Services.Configure<MongoDBSettings>(builder.Configuration.GetSection("MongoDB"));

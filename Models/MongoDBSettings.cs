@@ -1,6 +1,7 @@
-namespace grupp2.Models;
+namespace Grupp2.Models;
 
-public class MongoDBSettings {
+public class MongoDBSettings
+{
 
     public string ConnectionURI { get; set; } = null!;
     public string DatabaseName { get; set; } = null!;
