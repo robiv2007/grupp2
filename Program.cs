@@ -1,6 +1,12 @@
+using Grupp2.Models;
+using Grupp2.Services;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
+builder.Services.Configure<ThoughtsDatabaseSettings>(
+builder.Configuration.GetSection("ThoughtsMongoDB")); 
+builder.Services.AddSingleton<ThoughtService>();
 
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
