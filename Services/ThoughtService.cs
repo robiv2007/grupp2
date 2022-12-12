@@ -33,8 +33,8 @@ public class ThoughtService
         public async Task CreateAsync(Thought newThought) =>
         await _thoughtsCollection.InsertOneAsync(newThought);
 
-        // public async Task UpdateAsync(string id, Thought updatedThought) =>
-        // await _thoughtsCollection.ReplaceOneAsync(thought => thought.Id == id, updatedThought);
+        public async Task UpdateAsync(string id, Thought updatedThought) =>
+        await _thoughtsCollection.ReplaceOneAsync(thought => thought.Id == id, updatedThought);
 
         public async Task DeleteAsync(string id) =>
         await _thoughtsCollection.DeleteOneAsync(thought => thought.Id == id);
