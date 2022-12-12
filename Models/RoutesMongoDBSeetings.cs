@@ -1,5 +1,6 @@
 namespace Grupp2.Models;
 
+#pragma warning disable CS1591
 public class RoutesMongoDBSettings
 {
 
@@ -9,3 +10,4 @@ public class RoutesMongoDBSettings
 
     public string CollectionName { get; set; } = null!;
 }
+#pragma warning restore CS1591

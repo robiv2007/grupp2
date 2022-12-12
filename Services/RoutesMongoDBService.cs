@@ -22,6 +22,11 @@ public class RoutesMongoDBService
         return await _routesCollection.Find(new BsonDocument()).ToListAsync();
     }
 
+
+    public async Task<Routes?> GetOneAsync(string id) =>
+       await _routesCollection.Find(x => x.Id == id).FirstOrDefaultAsync();
+
+
     public async Task CreateAsync(Routes routes)
     {
         await _routesCollection.InsertOneAsync(routes);
@@ -30,7 +35,7 @@ public class RoutesMongoDBService
 
     public async Task AddToRoutesAsync(string id, string routesId)
     {
-        FilterDefinition<Routes> filter = Builders<Routes>.Filter.Eq("_id", id);
+        FilterDefinition<Routes> filter = Builders<Routes>.Filter.Eq("Id", id);
         UpdateDefinition<Routes> update = Builders<Routes>.Update.AddToSet<string>("routesId", routesId);
         await _routesCollection.UpdateOneAsync(filter, update);
         return;
@@ -38,7 +43,7 @@ public class RoutesMongoDBService
 
     public async Task DeleteAsync(string id)
     {
-        FilterDefinition<Routes> filter = Builders<Routes>.Filter.Eq("_id", id);
+        FilterDefinition<Routes> filter = Builders<Routes>.Filter.Eq("Id", id);
         await _routesCollection.DeleteOneAsync(filter);
         return;
     }
