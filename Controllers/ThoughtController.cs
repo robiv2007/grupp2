@@ -6,11 +6,11 @@ namespace Grupp2.Controllers;
 
 [ApiController]
 [Route("api/[controller]")]
-public class THoughtController : ControllerBase{
+public class ThoughtController : ControllerBase{
 
     private readonly ThoughtService _thoughtService;
 
-    public THoughtController(ThoughtService thoughtService) =>
+    public ThoughtController(ThoughtService thoughtService) =>
     _thoughtService = thoughtService;
 
     [HttpGet]
