@@ -23,7 +23,6 @@ public class InspectionsDBService {
     }
 
     //Asyncronically gets a certain item, based on id, from list of inspection items 
-        
      public async Task<Inspections?> GetOneAsync(string id) =>
         await _inspectionsCollection.Find(x => x._Id == id).FirstOrDefaultAsync();
 
