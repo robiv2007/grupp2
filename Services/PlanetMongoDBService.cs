@@ -1,9 +1,9 @@
-using GRUPP2.Models;
+using grupp2.Models;
 using Microsoft.Extensions.Options;
 using MongoDB.Driver;
 using MongoDB.Bson;
 
-namespace GRUPP2.Services;
+namespace grupp2.Services;
 
 public class PlanetMongoDBService {
 

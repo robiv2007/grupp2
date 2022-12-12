@@ -2,7 +2,7 @@ using MongoDB.Bson;
 using MongoDB.Bson.Serialization.Attributes;
 using System.Text.Json.Serialization;
 
-namespace GRUPP2.Models;
+namespace grupp2.Models;
 
 public class Planets {
 

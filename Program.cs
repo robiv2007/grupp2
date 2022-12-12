@@ -1,5 +1,5 @@
-using GRUPP2.Services;
-using GRUPP2.Models;
+using grupp2.Services;
+using grupp2.Models;
 using Microsoft.OpenApi.Models;
 
 var builder = WebApplication.CreateBuilder(args);
