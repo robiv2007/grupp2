@@ -90,7 +90,6 @@ public class ThoughtController : ControllerBase{
     /// </summary>
     /// <param name="id"></param>
     /// <returns></returns>
-
     [HttpDelete("{id:length(24)}")]
     public async Task<IActionResult> Delete(string id)
     {
@@ -110,7 +109,18 @@ public class ThoughtController : ControllerBase{
     /// Adds a comment to a Thought of the matching id.
     /// </summary>
     /// <param name="id"></param>
-    /// <returns></returns>
+    /// <returns>Your created comment</returns>
+    /// <remarks>
+    /// Sample request:
+    ///
+    ///     POST /Comment
+    ///     {
+    ///        "body": "This is my comment",
+    ///        "email": "This is optional",
+    ///        "author": "My name",
+    ///     }
+    ///
+    /// </remarks>
     [HttpPatch("{id:length(24)}")]
     public async Task<IActionResult> AddCommentToThought(string id, [FromBody]Comment comment) {
         await _thoughtService.AddCommentAsync(id, comment);
