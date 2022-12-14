@@ -30,9 +30,20 @@ builder.Services.AddSingleton<ThoughtService>();
 
 builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
-builder.Services.AddSwaggerGen(options =>
-{
-    var xmlFilename = $"{Assembly.GetExecutingAssembly().GetName().Name}.xml";
+builder.Services.AddSwaggerGen( options => {
+    options.SwaggerDoc("v1", new OpenApiInfo
+    {
+        Version = "v1",
+        Title = "Group 2 API",
+        Description = "School project in AU21 from ItHögskolan Stockholm",
+        TermsOfService = new Uri("https://example.com/terms"),
+        Contact = new OpenApiContact
+        {
+            Name = "John Doe",
+            Url = new Uri("https://johndoe.com/contact")
+        }
+    });
+      var xmlFilename = $"{Assembly.GetExecutingAssembly().GetName().Name}.xml";
     options.IncludeXmlComments(Path.Combine(AppContext.BaseDirectory, xmlFilename));
 }
 );
@@ -42,7 +53,11 @@ var app = builder.Build();
 if (app.Environment.IsDevelopment())
 {
     app.UseSwagger();
-    app.UseSwaggerUI();
+    app.UseSwaggerUI(options =>
+{
+    options.SwaggerEndpoint("/swagger/v1/swagger.json", "v1");
+    options.RoutePrefix = string.Empty;
+});
 }
 
 app.UseHttpsRedirection();
