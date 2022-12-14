@@ -8,16 +8,20 @@ using Microsoft.OpenApi.Models;
 
 var builder = WebApplication.CreateBuilder(args);
 
+
+// Zainab
 builder.Services.Configure<RoutesMongoDBSettings>(builder.Configuration.GetSection("RoutesMongoDB"));
 builder.Services.AddSingleton<RoutesMongoDBService>();
-// Add services to the container.
 
+// Roberts
 builder.Services.Configure<PlanetsMongoDBSettings>(builder.Configuration.GetSection("MongoDBPlanets"));
 builder.Services.AddSingleton<PlanetMongoDBService>();
 
-
+// Susannas
 builder.Services.Configure<InspectionDBSettings>(builder.Configuration.GetSection("TrainingDB"));
 builder.Services.AddSingleton<InspectionsDBService>();
+
+// Tonis
 builder.Services.Configure<ThoughtsDatabaseSettings>(
 builder.Configuration.GetSection("ThoughtsMongoDB"));
 builder.Services.AddSingleton<ThoughtService>();
