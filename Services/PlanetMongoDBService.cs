@@ -21,10 +21,12 @@ public class PlanetMongoDBService {
         await _planetsCollection.InsertOneAsync(planets);
         return;
     }
+   
 
     public async Task<List<Planets>> GetAsync() {
         return await _planetsCollection.Find(new BsonDocument()).ToListAsync();
     }
+
 
     public async Task AddToPlaylistAsync(string id, string planetId){
        FilterDefinition<Planets> filter = Builders<Planets>.Filter.Eq("id", id);
@@ -39,6 +41,11 @@ public class PlanetMongoDBService {
         return;
     }
 
+        public async Task<Planets?> GetOneById(string id) =>
+    await _planetsCollection.Find(x => x._Id == id).FirstOrDefaultAsync();
+
     // public async Task UpdateAsync(ObjectId id, Planets updatedPlanet) =>
     //     await _planetsCollection.ReplaceOneAsync(x => x._id == id, updatedPlanet);
+
+   
 }
