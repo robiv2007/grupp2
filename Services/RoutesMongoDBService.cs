@@ -21,10 +21,8 @@ public class RoutesMongoDBService
     {
         return await _routesCollection.Find(new BsonDocument()).ToListAsync();
     }
-
-
     public async Task<Routes?> GetOneAsync(string id) =>
-       await _routesCollection.Find(x => x.Id == id).FirstOrDefaultAsync();
+       await _routesCollection.Find(route => route.Id == id).FirstOrDefaultAsync();
 
 
     public async Task CreateAsync(Routes routes)
@@ -49,4 +47,33 @@ public class RoutesMongoDBService
         await _routesCollection.DeleteOneAsync(filter);
         return;
     }
+
+
+    //     public async Task UpdateAsync(string id, Routes updatedRoute)
+    //     {
+
+    //          await _routesCollection.ReplaceOneAsync(route => route.Id == id, updatedRoute);
+
+    //           await _routesCollection.ReplaceOneAsync(r => r.Id.Equals(id), 
+    //     updatedRoute, new UpdateOptions { IsUpsert = true });
+
+    //      await _routesCollection.ReplaceOneAsync(r => r.Id.Equals(id)
+    //     , updatedRoute);
+
+    //    await _routesCollection.ReplaceOneAsync(r => r.Id.Equals(id)
+    //     , updatedRoute, new UpdateOptions { IsUpsert = true });
+
+
+    //         await _routesCollection.FindOneAndReplaceAsync(
+    //     Builders<Routes>.Filter.Eq(u => u.Id, id),
+    //     updatedRoute,
+    //     new FindOneAndReplaceOptions<Routes>
+    //     { ReturnDocument = ReturnDocument.After });
+
+
+    //     }
+
+    public async Task UpdateAsync(string id, Routes updatedBook) =>
+            await _routesCollection.ReplaceOneAsync(x => x.Id == id, updatedBook);
+
 }

@@ -45,9 +45,27 @@ public class RoutesController : Controller
         return routes;
     }
 
-    /// <summary>
-    ///Creates a new route.
-    /// </summary>
+    ///<summary>Creates a new Route</summary>
+    ///<remarks>
+    /// Sample request:
+    ///
+    ///     POST /Routes
+    ///     {
+    ///         "id": "1111",
+    ///         "airline": {
+    ///             "id": 1,
+    ///             "name": "Kalle",
+    ///             "alias": "K",
+    ///             "iata": "ABC",
+    ///         }
+    ///         "src_airport": "LAX", 
+    ///         "dst_airport": "JFK",
+    ///         "codeshare": "LAF",
+    ///         "stops": 0, 
+    ///         "airplane": "BGT" 
+    ///     },
+    ///   
+    /// </remarks>
     [HttpPost]
     [ProducesResponseType(StatusCodes.Status201Created)]
     [ProducesResponseType(StatusCodes.Status404NotFound)]
@@ -58,17 +76,17 @@ public class RoutesController : Controller
     }
 
 
-    /// <summary>
-    /// Change airplane name.
-    /// </summary>
-    [HttpPut("{id}")]
-    [ProducesResponseType(StatusCodes.Status404NotFound)]
-    [ProducesResponseType(StatusCodes.Status102Processing)]
-    public async Task<IActionResult> ChangeAirplaneName(string id, string newairplanename)
-    {
-        await _mongoDBService.ChangeAirplaneNameAsync(id, newairplanename);
-        return NoContent();
-    }
+    // /// <summary>
+    // /// Change airplane name.
+    // /// </summary>
+    // [HttpPut("{id}")]
+    // [ProducesResponseType(StatusCodes.Status404NotFound)]
+    // [ProducesResponseType(StatusCodes.Status102Processing)]
+    // public async Task<IActionResult> ChangeAirplaneName(string id, string newairplanename)
+    // {
+    //     await _mongoDBService.ChangeAirplaneNameAsync(id, newairplanename);
+    //     return NoContent();
+    // }
 
     /// <summary>
     /// Delete a route.
@@ -82,5 +100,25 @@ public class RoutesController : Controller
         await _mongoDBService.DeleteAsync(id);
         return NoContent();
     }
+
+    /// <summary>
+    /// Update the whole route.
+    /// </summary>
+    [HttpPut("{id:length(24)}")]
+    public async Task<IActionResult> Update(string id, [FromBody] Routes updatedRoute)
+    {
+        var route = await _mongoDBService.GetOneAsync(id);
+
+        if (route is null)
+        {
+            return NotFound();
+        }
+
+        updatedRoute.Id = route.Id;
+
+        await _mongoDBService.UpdateAsync(id, updatedRoute);
+        return NoContent();
+    }
+
 
 }

@@ -36,16 +36,16 @@ builder.Services.AddSwaggerGen(options =>
         Version = "1.0",
         Title = "Grupp2",
         Description = "An ASP.NET Core Web API for a school project",
-        TermsOfService = new Uri("https://example.com/terms"),
+        TermsOfService = new Uri("https://github.com/Noccis/grupp2"),
         Contact = new OpenApiContact
         {
-            Name = "Example Contact",
-            Url = new Uri("https://example.com/contact")
+            Name = "Repo Location",
+            Url = new Uri("https://github.com/Noccis/grupp2")
         },
         License = new OpenApiLicense
         {
             Name = "Example License",
-            Url = new Uri("https://example.com/license")
+            Url = new Uri("https://github.com/Noccis/grupp2")
         }
     });
 }
