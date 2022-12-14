@@ -5,8 +5,14 @@ using System.Reflection;
 using Microsoft.OpenApi.Models;
 
 
+
 var builder = WebApplication.CreateBuilder(args);
 // Roberts database
+
+builder.Services.Configure<RoutesMongoDBSettings>(builder.Configuration.GetSection("RoutesMongoDB"));
+builder.Services.AddSingleton<RoutesMongoDBService>();
+// Add services to the container.
+
 builder.Services.Configure<PlanetsMongoDBSettings>(builder.Configuration.GetSection("MongoDBPlanets"));
 builder.Services.AddSingleton<PlanetMongoDBService>();
 // Susannas database
@@ -14,8 +20,9 @@ builder.Services.Configure<InspectionDBSettings>(builder.Configuration.GetSectio
 builder.Services.AddSingleton<InspectionsDBService>();
 // Tonis database
 builder.Services.Configure<ThoughtsDatabaseSettings>(
-builder.Configuration.GetSection("ThoughtsMongoDB")); 
+builder.Configuration.GetSection("ThoughtsMongoDB"));
 builder.Services.AddSingleton<ThoughtService>();
+
 
 
 builder.Services.AddControllers();
@@ -35,7 +42,7 @@ builder.Services.AddSwaggerGen( options => {
     });
       var xmlFilename = $"{Assembly.GetExecutingAssembly().GetName().Name}.xml";
     options.IncludeXmlComments(Path.Combine(AppContext.BaseDirectory, xmlFilename));
-    }
+}
 );
 
 var app = builder.Build();
