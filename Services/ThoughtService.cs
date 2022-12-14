@@ -4,6 +4,7 @@ using MongoDB.Driver;
 
 namespace Grupp2.Services;
 
+#pragma warning disable CS1591
 public class ThoughtService
 {
     private readonly IMongoCollection<Thought> _thoughtsCollection;
@@ -46,3 +47,4 @@ public class ThoughtService
             return;
         }
 }
+#pragma warning restore CS1591

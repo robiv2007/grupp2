@@ -12,7 +12,7 @@ builder.Services.AddSingleton<PlanetMongoDBService>();
 // Susannas database
 builder.Services.Configure<InspectionDBSettings>(builder.Configuration.GetSection("TrainingDB"));
 builder.Services.AddSingleton<InspectionsDBService>();
-// Tonis database+
+// Tonis database
 builder.Services.Configure<ThoughtsDatabaseSettings>(
 builder.Configuration.GetSection("ThoughtsMongoDB")); 
 builder.Services.AddSingleton<ThoughtService>();

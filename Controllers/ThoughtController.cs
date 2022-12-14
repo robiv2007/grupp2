@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace Grupp2.Controllers;
 
+#pragma warning disable CS1591
 [ApiController]
 [Route("api/[controller]")]
 [Produces("application/json")]
@@ -17,7 +18,6 @@ public class ThoughtController : ControllerBase{
     /// <summary>
     /// Returns an array of Thoughts
     /// </summary>
-    /// <param name="id"></param>
     /// <returns></returns>
     [HttpGet]
     public async Task<List<Thought>> Get() =>
@@ -26,7 +26,7 @@ public class ThoughtController : ControllerBase{
     /// <summary>
     /// Creates a Thought post.
     /// </summary>
-    /// <param name="item"></param>
+    /// <param name="newThought"></param>
     /// <returns>Your created Thought</returns>
     /// <remarks>
     /// Sample request:
@@ -70,6 +70,8 @@ public class ThoughtController : ControllerBase{
     /// <response code="204">Returns the newly created item</response>
     /// <response code="400">If some of the fields are null</response>
     [HttpPut("{id:length(24)}")]
+    [ProducesResponseType(StatusCodes.Status204NoContent)]
+    [ProducesResponseType(StatusCodes.Status400BadRequest)]
     public async Task<IActionResult> Update(string id, Thought updatedThought)
     {
         var thought = await _thoughtService.GetAsync(id);
@@ -89,8 +91,12 @@ public class ThoughtController : ControllerBase{
     /// Deletes a specific Thought Post.
     /// </summary>
     /// <param name="id"></param>
-    /// <returns></returns>
+    /// <returns>Returns no content</returns>
+    /// <response code="204">The item has been deleted</response>
+    /// <response code="400">Could not find item</response>
     [HttpDelete("{id:length(24)}")]
+    [ProducesResponseType(StatusCodes.Status204NoContent)]
+    [ProducesResponseType(StatusCodes.Status400BadRequest)]
     public async Task<IActionResult> Delete(string id)
     {
         var thought = await _thoughtService.GetAsync(id);
@@ -121,10 +127,16 @@ public class ThoughtController : ControllerBase{
     ///     }
     ///
     /// </remarks>
+    /// <response code="204">Comment has been added</response>
+    /// <response code="400">Could not add comment</response>
     [HttpPatch("{id:length(24)}")]
+    [ProducesResponseType(StatusCodes.Status204NoContent)]
+    [ProducesResponseType(StatusCodes.Status400BadRequest)]
     public async Task<IActionResult> AddCommentToThought(string id, [FromBody]Comment comment) {
         await _thoughtService.AddCommentAsync(id, comment);
         return NoContent();
     }
 
 }
+
+#pragma warning restore CS1591
