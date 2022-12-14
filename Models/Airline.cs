@@ -15,6 +15,8 @@ public class Airline
     [JsonPropertyName("name")]
     public string Name { get; set; } = null!;
 
+#pragma warning disable CS1591
+
     [BsonElement("alias")]
     [JsonPropertyName("aias")]
     public string Alias { get; set; } = null!;
@@ -25,3 +27,4 @@ public class Airline
 
 
 }
+#pragma warning disable CS1591

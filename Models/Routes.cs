@@ -16,6 +16,8 @@ public class Routes
     [JsonPropertyName("airline")]
     public Airline Airline { get; set; } = null!;
 
+#pragma warning disable CS1591
+
     [BsonElement("src_airport")]
     [JsonPropertyName("src_airport")]
     public string? Src_airport { get; set; } = null!;
@@ -41,3 +43,4 @@ public class Routes
 
 
 }
+#pragma warning restore CS1591
