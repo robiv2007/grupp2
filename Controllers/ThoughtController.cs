@@ -19,7 +19,9 @@ public class ThoughtController : ControllerBase{
     /// Returns an array of Thoughts
     /// </summary>
     /// <returns></returns>
+    /// <response code="200">Success</response>
     [HttpGet]
+    [ProducesResponseType(StatusCodes.Status200OK)]
     public async Task<List<Thought>> Get() =>
     await _thoughtService.GetAsync();
 
@@ -51,8 +53,8 @@ public class ThoughtController : ControllerBase{
     ///     }
     ///
     /// </remarks>
-    /// <response code="201">Returns the newly created item</response>
-    /// <response code="400">If the item is null</response>
+    /// <response code="201">Returns the newly created Thought</response>
+    /// <response code="400">If the Thought is null</response>
     [HttpPost]
     [ProducesResponseType(StatusCodes.Status201Created)]
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
@@ -67,7 +69,7 @@ public class ThoughtController : ControllerBase{
     /// </summary>
     /// <param name="id"></param>
     /// <returns></returns>
-    /// <response code="204">Returns the newly created item</response>
+    /// <response code="204">Returns the newly created Thought</response>
     /// <response code="400">If some of the fields are null</response>
     [HttpPut("{id:length(24)}")]
     [ProducesResponseType(StatusCodes.Status204NoContent)]
@@ -92,8 +94,8 @@ public class ThoughtController : ControllerBase{
     /// </summary>
     /// <param name="id"></param>
     /// <returns>Returns no content</returns>
-    /// <response code="204">The item has been deleted</response>
-    /// <response code="400">Could not find item</response>
+    /// <response code="204">The Thought has been deleted</response>
+    /// <response code="400">Could not find Thought with that Id</response>
     [HttpDelete("{id:length(24)}")]
     [ProducesResponseType(StatusCodes.Status204NoContent)]
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
