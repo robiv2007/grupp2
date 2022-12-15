@@ -4,7 +4,10 @@ using System.Text.Json.Serialization;
 
 namespace Grupp2.Models;
 
-public class Planets {
+
+#pragma warning disable CS1591
+public class Planet
+{
 
     [BsonId]
     [BsonRepresentation(BsonType.ObjectId)]
@@ -12,14 +15,15 @@ public class Planets {
 
     public string name { get; set; } = null!;
 
-    public int orderFromSun {get; set;}
+    public int orderFromSun { get; set; }
 
-    public bool hasRings {get; set;}
+    public bool hasRings { get; set; }
 
-     public List<string> mainAtmosphere {get; set;} = null!;
+    public List<string> mainAtmosphere { get; set; } = null!;
 
-      [BsonElement("surfaceTemperatureC")]
+    [BsonElement("surfaceTemperatureC")]
     [JsonPropertyName("surfaceTemperatureC")]
-    public SurfaceTemperatureC SurfaceTemperatureC {get; set;} = null!;
+    public SurfaceTemperatureC SurfaceTemperatureC { get; set; } = null!;
 
 }
+#pragma warning restore CS1591
