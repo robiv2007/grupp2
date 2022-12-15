@@ -4,7 +4,15 @@ using System.Text.Json.Serialization;
 
 namespace Grupp2.Models;
 
+    /// <summary>
+    /// Model for Restaurant document
+    /// </summary>
+
 public class Restaurant {
+
+    /// <summary>
+    /// Creates an unique id for each restaurant object
+    /// </summary>
 
     [BsonId]
     [BsonRepresentation(BsonType.ObjectId)]
@@ -16,6 +24,9 @@ public class Restaurant {
 
     public List<string> menuItems { get; set; } = null!;
 
+    /// <summary>
+    /// referance for the database and model to communicate through
+    /// </summary>
     [BsonElement("coordinates")]
     [JsonPropertyName("coordinates")]
     public Coordinates Coordinates {get; set;} = null!;
