@@ -21,6 +21,9 @@ public class RoutesMongoDBService
     {
         return await _routesCollection.Find(new BsonDocument()).ToListAsync();
     }
+    public async Task<Routes?> GetOneAsync(string id) =>
+       await _routesCollection.Find(route => route.Id == id).FirstOrDefaultAsync();
+
 
     public async Task CreateAsync(Routes routes)
     {
@@ -28,18 +31,49 @@ public class RoutesMongoDBService
         return;
     }
 
-    public async Task AddToRoutesAsync(string id, string routesId)
+    public async Task ChangeAirplaneNameAsync(string id, string newairplanename)
     {
-        FilterDefinition<Routes> filter = Builders<Routes>.Filter.Eq("_id", id);
-        UpdateDefinition<Routes> update = Builders<Routes>.Update.AddToSet<string>("routesId", routesId);
+        FilterDefinition<Routes> filter = Builders<Routes>.Filter.Eq("Id", id);
+        UpdateDefinition<Routes> update = Builders<Routes>.Update.Set<string>("airplane", newairplanename);
         await _routesCollection.UpdateOneAsync(filter, update);
         return;
     }
 
+
+
     public async Task DeleteAsync(string id)
     {
-        FilterDefinition<Routes> filter = Builders<Routes>.Filter.Eq("_id", id);
+        FilterDefinition<Routes> filter = Builders<Routes>.Filter.Eq("Id", id);
         await _routesCollection.DeleteOneAsync(filter);
         return;
     }
+
+
+    //     public async Task UpdateAsync(string id, Routes updatedRoute)
+    //     {
+
+    //          await _routesCollection.ReplaceOneAsync(route => route.Id == id, updatedRoute);
+
+    //           await _routesCollection.ReplaceOneAsync(r => r.Id.Equals(id), 
+    //     updatedRoute, new UpdateOptions { IsUpsert = true });
+
+    //      await _routesCollection.ReplaceOneAsync(r => r.Id.Equals(id)
+    //     , updatedRoute);
+
+    //    await _routesCollection.ReplaceOneAsync(r => r.Id.Equals(id)
+    //     , updatedRoute, new UpdateOptions { IsUpsert = true });
+
+
+    //         await _routesCollection.FindOneAndReplaceAsync(
+    //     Builders<Routes>.Filter.Eq(u => u.Id, id),
+    //     updatedRoute,
+    //     new FindOneAndReplaceOptions<Routes>
+    //     { ReturnDocument = ReturnDocument.After });
+
+
+    //     }
+
+    public async Task UpdateAsync(string id, Routes updatedBook) =>
+            await _routesCollection.ReplaceOneAsync(x => x.Id == id, updatedBook);
+
 }
