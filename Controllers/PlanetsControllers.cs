@@ -70,13 +70,22 @@ public class PlanetsController : Controller
     }
 
     /// <summary>
-    ///  Add an planet item in the list
+    ///  Update an planet item in the list
     /// </summary>
     [HttpPut("{id:length(24)}")]
-
-    public async Task<IActionResult> AddToPlaylist(string id, [FromBody] string planetId)
+    public async Task<IActionResult> Update(string id, Planet updatedPlanet)
     {
-        await _planetDBService.AddToPlaylistAsync(id, id);
+        var planet = await _planetDBService.GetAsync(id);
+
+        if (planet is null)
+        {
+            return NotFound();
+        }
+
+        updatedPlanet._Id = planet._Id;
+
+        await _planetDBService.UpdateAsync(id, updatedPlanet);
+
         return NoContent();
     }
 
