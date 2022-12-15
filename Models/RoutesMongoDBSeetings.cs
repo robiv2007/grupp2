@@ -1,7 +1,7 @@
 namespace Grupp2.Models;
 
 #pragma warning disable CS1591
-public class PlanetsMongoDBSettings
+public class RoutesMongoDBSettings
 {
 
     public string ConnectionURI { get; set; } = null!;

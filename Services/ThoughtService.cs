@@ -4,6 +4,7 @@ using MongoDB.Driver;
 
 namespace Grupp2.Services;
 
+#pragma warning disable CS1591
 public class ThoughtService
 {
     private readonly IMongoCollection<Thought> _thoughtsCollection;
@@ -28,7 +29,7 @@ public class ThoughtService
         await _thoughtsCollection.Find(_ => true).ToListAsync();
 
         public async Task<Thought?> GetAsync(string id) =>
-        await _thoughtsCollection.Find(x => x.Id == id).FirstOrDefaultAsync();
+        await _thoughtsCollection.Find(thought => thought.Id == id).FirstOrDefaultAsync();
 
         public async Task CreateAsync(Thought newThought) =>
         await _thoughtsCollection.InsertOneAsync(newThought);
@@ -38,4 +39,12 @@ public class ThoughtService
 
         public async Task DeleteAsync(string id) =>
         await _thoughtsCollection.DeleteOneAsync(thought => thought.Id == id);
+
+        public async Task AddCommentAsync(string thoughtId, Comment newComment) {
+            FilterDefinition<Thought> filter = Builders<Thought>.Filter.Eq("Id", thoughtId);
+            UpdateDefinition<Thought> update = Builders<Thought>.Update.AddToSet<Comment>("Comments", newComment);
+            await _thoughtsCollection.UpdateOneAsync(filter, update);
+            return;
+        }
 }
+#pragma warning restore CS1591
