@@ -47,24 +47,25 @@ public class InspectionsController: Controller {
     /// <remarks>
     /// Sample request:
     ///
-    ///     Create /Inspection
-    /// {
-    ///"_Id": "string",
-    ///"certificate_number": 0,
-    ///"business_name": "string",
-    ///"date": "string",
-    ///"result": "string",
-    ///"sector": "string",
-    ///"address": {
-    ///"city": "string",
-    ///"zip": 0,
-    ///"street": "string",
-    ///"number": 0
-    ///},
-    ///"string": [
-    ///"string"
-    ///]
-    ///}
+    ///     POST /Inspection
+    ///     {
+    ///         "_Id": "489572897523475489",
+    ///         "certificate_number": 55,
+    ///         "business_name": "Training business",
+    ///         "date": "29 December 1982",
+    ///         "result": "Very good",
+    ///         "sector": "Gym",
+    ///         "address": {
+    ///             "city": "Stockholm",
+    ///             "zip": 11871,
+    ///             "street": "Ringvägen",
+    ///             "number": 12
+    ///         },
+    ///         "Sort of Training": [
+    ///         "Strength"
+    ///         ]
+    ///     }
+    ///
     /// </remarks>  
 
     /// <response code="201">Returns the newly created item</response>
