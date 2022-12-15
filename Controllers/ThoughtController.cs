@@ -1,3 +1,4 @@
+// Import librarys and other folders to get access to classes and more functionality
 using Grupp2.Models;
 using Grupp2.Services;
 using Microsoft.AspNetCore.Mvc;
@@ -5,16 +6,20 @@ using Microsoft.AspNetCore.Mvc;
 namespace Grupp2.Controllers;
 
 #pragma warning disable CS1591
+// Create an controller that will be responsible for the communication with the server.
 [ApiController]
 [Route("api/[controller]")]
 [Produces("application/json")]
 public class ThoughtController : ControllerBase{
 
+    // Create a private thoughtservice that can only be used by the Controller to access functionality in the service
     private readonly ThoughtService _thoughtService;
-
+    // Create a public controller and add the service in the constructor
     public ThoughtController(ThoughtService thoughtService) =>
+    // the private service is the one sent in the constructor
     _thoughtService = thoughtService;
 
+    // Create swagger ui comments to explain to the frontend developer what functionality and error codes that the Task produces
     /// <summary>
     /// Returns an array of Thoughts
     /// </summary>
@@ -31,6 +36,7 @@ public class ThoughtController : ControllerBase{
     /// <param name="newThought"></param>
     /// <returns>Your created Thought</returns>
     /// <remarks>
+    // Gives an example of a new Thought
     /// Sample request:
     ///
     ///     POST /Thought
