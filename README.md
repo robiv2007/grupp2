@@ -1,7 +1,7 @@
 # grupp2
 School group project
 
-Susanna Johansson
+Susanna Johansson: InspectionsController.cs, InspectionDBSettings, Inspections.cs, Address.cs, InspectionsDBService.cs
 
 Robert Vatran
 
