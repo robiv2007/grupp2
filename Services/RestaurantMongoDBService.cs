@@ -5,6 +5,7 @@ using MongoDB.Bson;
 
 namespace Grupp2.Services;
 
+#pragma warning disable CS1591
 public class RestaurantMongoDBService {
 
     private readonly IMongoCollection<Restaurant> _restaurantCollection;
@@ -36,6 +37,8 @@ public class RestaurantMongoDBService {
         await _restaurantCollection.DeleteOneAsync(filter);
         return;
     }
+
+    #pragma warning disable CS1591
 
     public async Task<Restaurant?> GetOneById(string id) =>
     await _restaurantCollection.Find(x => x._id == id).FirstOrDefaultAsync();

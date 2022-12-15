@@ -29,24 +29,22 @@ public class RestaurantController : Controller
         return await _restaurantMongoDBService.GetAsync();
     }
 
-    /// <summary>
-    /// Create new Restaurant
-    /// </summary>
+    /// <summary>Create new Restaurant</summary>
     /// <remarks>
-    /// Sample value:
+    /// Sample request:
     ///
-    /// Post Restaurant
-    /// {
-    /// "_id": "string",
-    /// "borough": "string",
-    /// "cuisine": "string",
-    /// "menuItems": [
-    /// "string"
-    ///  ],
-    /// "coordinates": {
-    ///   "long": 18.063240,
-    ///   "lat": 59.334591
-    /// }
+    ///     POST /Restaurant
+    ///     {
+    ///        "_id": "139208a36d4f07b8933825a8",
+    ///        "borough": "Texas",
+    ///        "cuisine": "Barbeque",
+    ///        "menuItems": [
+    ///        "smoked ribs"
+    ///     ],
+    ///       "coordinates": {
+    ///         "long": 18.063240,
+    ///         "lat": 59.334591
+    ///      }
     /// }
     /// </remarks>
     /// <response code="201">Request success in created Restaurant</response>
@@ -81,7 +79,6 @@ public class RestaurantController : Controller
     /// <returns></returns>
     /// <response code="102">Processing request</response>
     /// <response code="204">No item of such content exists</response>
-
     [HttpDelete("{id}")]
     [ProducesResponseType(StatusCodes.Status102Processing)]
     [ProducesResponseType(StatusCodes.Status204NoContent)]
@@ -95,7 +92,9 @@ public class RestaurantController : Controller
     /// Get an item by id.
     /// </summary>
 
+    /// <response code="404">Item not found</response>
     [HttpGet("{id}")]
+    [ProducesResponseType(StatusCodes.Status404NotFound)]
     public async Task<ActionResult<Restaurant>> Get(string id)
     {
         var restaurants = await _restaurantMongoDBService.GetOneById(id);

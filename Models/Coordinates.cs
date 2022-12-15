@@ -2,6 +2,7 @@ using MongoDB.Bson.Serialization.Attributes;
 
 namespace Grupp2.Models;
 
+#pragma warning disable CS1591
 public class Coordinates {
 
     [BsonElement("long")]
@@ -11,3 +12,5 @@ public class Coordinates {
     public double? Lat { get; set; }
 
 }
+
+#pragma warning disable CS1591

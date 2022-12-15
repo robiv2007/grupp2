@@ -18,6 +18,7 @@ public class Restaurant {
     [BsonRepresentation(BsonType.ObjectId)]
     public string? _id { get; set; }
 
+    #pragma warning disable CS1591
     public string borough { get; set;} = null!;
 
     public string cuisine { get; set; } = null!;
@@ -32,3 +33,5 @@ public class Restaurant {
     public Coordinates Coordinates {get; set;} = null!;
 
 }
+
+#pragma warning disable CS1591
