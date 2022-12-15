@@ -1,6 +1,5 @@
 using MongoDB.Bson;
 using MongoDB.Bson.Serialization.Attributes;
-using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 
 namespace Grupp2.Models;
