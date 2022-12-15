@@ -1,9 +1,10 @@
-
+// import annotations to use the [required] function
 using System.ComponentModel.DataAnnotations;
 
 namespace Grupp2.Models;
 
 #pragma warning disable CS1591
+// This class is a single comment that can be made and added to the comments list on a Thought
 public class Comment 
 {
     [Required]

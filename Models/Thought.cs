@@ -1,3 +1,4 @@
+// Import libraries from Mongodb and system for more functionality
 using MongoDB.Bson;
 using MongoDB.Bson.Serialization.Attributes;
 using System.ComponentModel.DataAnnotations;
@@ -5,9 +6,10 @@ using System.ComponentModel.DataAnnotations;
 namespace Grupp2.Models;
 
 #pragma warning disable CS1591
+// This class represents a Thought post.
 public class Thought 
 {
-
+// The id will be automaticly generated for us with help from our Bson import
 [BsonId]
 [BsonRepresentation(BsonType.ObjectId)]
 public string? Id { get; set; }

@@ -5,7 +5,7 @@ using System.Reflection;
 using Microsoft.OpenApi.Models;
 
 
-
+// Creates a new webbapplication builder that will give us access to configuration and functionallity
 var builder = WebApplication.CreateBuilder(args);
 
 
@@ -22,20 +22,23 @@ builder.Services.Configure<InspectionDBSettings>(builder.Configuration.GetSectio
 builder.Services.AddSingleton<InspectionsDBService>();
 
 // Tonis
+// Register a instance of ThoughtsDatabaseSettings and get the section THoughtsMongoDB from the appsettings.json file
 builder.Services.Configure<ThoughtsDatabaseSettings>(
 builder.Configuration.GetSection("ThoughtsMongoDB"));
+// Create a singelton of the ThoughtService so that we can send it in to the controller
 builder.Services.AddSingleton<ThoughtService>();
 
 
-
+// Create our controllers
 builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 
 
-
+// Add swagger to provide the frontend with an interface to test the functionality
 builder.Services.AddSwaggerGen(options =>
 {
 
+    // Create document  with information about the database and som contact info
     options.SwaggerDoc("v1", new OpenApiInfo
     {
         Version = "v1",
@@ -55,14 +58,17 @@ builder.Services.AddSwaggerGen(options =>
 }
 );
 
+// Build our app
 var app = builder.Build();
 
+// If the app is in development stage, use swagger ui for testing
 if (app.Environment.IsDevelopment())
 {
     app.UseSwagger();
     app.UseSwaggerUI(options =>
 {
     options.SwaggerEndpoint("/swagger/v1/swagger.json", "v1");
+    // Add to automaticly go to the swagger ui when you click the link
     options.RoutePrefix = string.Empty;
 });
 }
@@ -73,4 +79,5 @@ app.UseAuthorization();
 
 app.MapControllers();
 
+// Run our app
 app.Run();

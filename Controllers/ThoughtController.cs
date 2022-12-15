@@ -28,6 +28,7 @@ public class ThoughtController : ControllerBase{
     [HttpGet]
     [ProducesResponseType(StatusCodes.Status200OK)]
     public async Task<List<Thought>> Get() =>
+    // calls the GetAsync function in the service
     await _thoughtService.GetAsync();
 
     /// <summary>
