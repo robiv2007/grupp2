@@ -4,7 +4,7 @@ using System.Reflection;
 using Microsoft.OpenApi.Models;
 
 // Add services to the container.
-
+//Builder that creates the webbapp
 var builder = WebApplication.CreateBuilder(args);
 
 
@@ -38,7 +38,7 @@ builder.Services.AddEndpointsApiExplorer();
 
 builder.Services.AddSwaggerGen(options =>
 {
-
+// Info about the database that is displaied in the SwaggerUI
     options.SwaggerDoc("v1", new OpenApiInfo
     {
         Version = "v1",
@@ -52,19 +52,23 @@ builder.Services.AddSwaggerGen(options =>
         }
     });
 
+    //Create the xml file
       var xmlFilename = $"{Assembly.GetExecutingAssembly().GetName().Name}.xml";
 
     options.IncludeXmlComments(Path.Combine(AppContext.BaseDirectory, xmlFilename));
 }
 );
 
+//Build the app
 var app = builder.Build();
 
+//If the app is in the development mode it wull use the swaggerUI in order to test it
 if (app.Environment.IsDevelopment())
 {
     app.UseSwagger();
     app.UseSwaggerUI(options =>
 {
+    //Add the suffix swagger so when you click on link goes to the swaggerUI page directly
     options.SwaggerEndpoint("/swagger/v1/swagger.json", "v1");
     options.RoutePrefix = string.Empty;
 });
