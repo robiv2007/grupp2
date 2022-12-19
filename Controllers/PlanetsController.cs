@@ -114,6 +114,7 @@ public class PlanetsController : Controller
     [ProducesResponseType(StatusCodes.Status404NotFound)] 
     public async Task<ActionResult<Planet>> Get(string id)
     {
+        // Use the collection to find user by ID
         var planet = await _planetDBService.GetOneById(id);
 
         if (planet is null)
