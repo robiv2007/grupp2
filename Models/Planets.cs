@@ -6,6 +6,8 @@ namespace Grupp2.Models;
 
 
 #pragma warning disable CS1591
+
+//Define a 'Planet' class to store information about a planet
 public class Planet
 {
 

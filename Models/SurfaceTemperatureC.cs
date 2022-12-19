@@ -3,6 +3,8 @@ using MongoDB.Bson.Serialization.Attributes;
 namespace Grupp2.Models;
 
 #pragma warning disable CS1591
+
+//Define a 'SurfaceTemperatureC' class to store information about the SurfaceTemperatureC object in 'Planet'
 public class SurfaceTemperatureC
 {
 
