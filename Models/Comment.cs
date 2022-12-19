@@ -10,6 +10,7 @@ public class Comment
     [Required]
     public string Body { get; set; } = null!;
 
+    /// <summary>Email to the author of the comment, this can be left empty</summary>
     public string Email { get; set; } = string.Empty;
 
     [Required]
