@@ -38,7 +38,7 @@ builder.Services.AddEndpointsApiExplorer();
 
 builder.Services.AddSwaggerGen(options =>
 {
-// Info about the database that is displaied in the SwaggerUI
+// Info about the API that is displaied in the SwaggerUI
     options.SwaggerDoc("v1", new OpenApiInfo
     {
         Version = "v1",
