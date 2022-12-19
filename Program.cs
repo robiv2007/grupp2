@@ -52,8 +52,10 @@ builder.Services.AddSwaggerGen(options =>
         }
     });
 
-      var xmlFilename = $"{Assembly.GetExecutingAssembly().GetName().Name}.xml";
+    // Create our xml filenamn by combining the name of our project with the xml ending
+    var xmlFilename = $"{Assembly.GetExecutingAssembly().GetName().Name}.xml";
 
+    // Tell SwaggerGen where to find our xml file with our comments and what the name of the file is.
     options.IncludeXmlComments(Path.Combine(AppContext.BaseDirectory, xmlFilename));
 }
 );
